@@ -1,0 +1,29 @@
+name: dVote checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+      - name: Verify the frontend wallet transport against a local chain
+        shell: bash
+        run: |
+          mkdir -p work
+          pnpm node > work/node.log 2>&1 &
+          DVOTE_NODE_PID=$!
+          trap 'kill "$DVOTE_NODE_PID" 2>/dev/null || true' EXIT
+          node scripts/wait-for-rpc.js
+          pnpm test:wallet

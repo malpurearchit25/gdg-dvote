@@ -1,0 +1,12 @@
+node_modules/
+artifacts/
+cache/
+frontend/dist/
+.env
+.env.local
+*.log
+deployments/*.json
+!deployments/.gitkeep
+work/
+coverage/
+*.zip

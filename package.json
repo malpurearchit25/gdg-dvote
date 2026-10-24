@@ -1,0 +1,37 @@
+{
+  "name": "gdg-dvote",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "node": "hardhat node --hostname 127.0.0.1",
+    "deploy": "hardhat run scripts/deploy.js --network localhost",
+    "seed": "hardhat run scripts/seed.js --network localhost",
+    "dev": "vite frontend --host 127.0.0.1",
+    "build": "vite build frontend",
+    "preview": "vite preview frontend --host 127.0.0.1",
+    "test:integration": "node scripts/integration.js",
+    "test:frontend": "vitest run",
+    "test:wallet": "vitest run --config vitest.rpc.config.mjs",
+    "check": "hardhat test && vitest run && vite build frontend"
+  },
+  "dependencies": {
+    "ethers": "6.15.0",
+    "lucide-react": "0.468.0",
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ethers": "3.1.0",
+    "@tailwindcss/vite": "4.1.13",
+    "@testing-library/react": "16.3.0",
+    "@vitejs/plugin-react": "4.7.0",
+    "hardhat": "2.26.3",
+    "jsdom": "26.1.0",
+    "solc": "0.8.24",
+    "tailwindcss": "4.1.13",
+    "vite": "6.3.6",
+    "vitest": "3.2.4"
+  }
+}
